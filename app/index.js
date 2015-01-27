@@ -56,6 +56,10 @@ module.exports = yeoman.generators.Base.extend({
           name: 'Modernizr',
           value: 'includeModernizr',
           checked: true
+        },{
+          name: 'Lodash',
+          value: 'includeLodash',
+          checked: true
         }]
       },
       {
@@ -101,6 +105,7 @@ module.exports = yeoman.generators.Base.extend({
       // we change a bit this way of doing to automatically do this in the self.prompt() method.
       this.includeSass = hasFeature('includeSass');
       this.includeModernizr = hasFeature('includeModernizr');
+      this.includeLodash = hasFeature('includeLodash');
 
       this.includeReset     = (answers.css === 'reset');
       this.includeNormalize = (answers.css === 'normalize');
@@ -149,6 +154,10 @@ module.exports = yeoman.generators.Base.extend({
 
       if (this.includeModernizr) {
         bower.dependencies.modernizr = '~2.8.1';
+      }
+
+      if (this.includeLodash) {
+        bower.dependencies.lodash = '~3.0.0';
       }
 
       if (this.includeNormalize) {
